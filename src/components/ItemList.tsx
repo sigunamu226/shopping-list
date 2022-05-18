@@ -32,6 +32,10 @@ const ItemList: React.FC<{
     setChecked(checked.map((c, i) => (i === key ? !c : c)));
   };
 
+  const onClickDelete = (deleteItem: Item) => {
+    setItem(item.filter((i) => i !== deleteItem));
+  };
+
   return (
     <Col className="item-list">
       <Box className="item-list-box" id="item-list-box">
@@ -55,7 +59,13 @@ const ItemList: React.FC<{
       <ListItem
         key={index}
         secondaryAction={
-          <IconButton edge="end" aria-label="comments">
+          <IconButton
+            edge="end"
+            aria-label="comments"
+            onClick={() => {
+              onClickDelete(item[index]);
+            }}
+          >
             <DeleteIcon />
           </IconButton>
         }
