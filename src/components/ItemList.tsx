@@ -11,13 +11,15 @@ import {
 import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import { FixedSizeList, ListChildComponentProps } from "react-window";
-import { Item } from "../interfaces/item";
+import { nextTimeItem } from "../interfaces/nextTimeItem";
+import { recentItem } from "../interfaces/recentItem";
 import "./itemlist.scss";
 
 const ItemList: React.FC<{
-  item: Item[];
-  setItem: React.Dispatch<React.SetStateAction<Item[]>>;
-}> = ({ item, setItem }) => {
+  item: recentItem[] | nextTimeItem[];
+  setItem: React.Dispatch<React.SetStateAction<recentItem[] | nextTimeItem[]>>;
+  listTitle: string;
+}> = ({ item, setItem, listTitle }) => {
   const [checked, setChecked] = useState<boolean[]>([]);
   const [boxHeight, setBoxHeight] = useState(0);
   const [boxWidth, setBoxWidth] = useState(0);
@@ -32,12 +34,13 @@ const ItemList: React.FC<{
     setChecked(checked.map((c, i) => (i === key ? !c : c)));
   };
 
-  const onClickDelete = (deleteItem: Item) => {
+  const onClickDelete = (deleteItem: recentItem | nextTimeItem) => {
     setItem(item.filter((i) => i !== deleteItem));
   };
 
   return (
     <Col className="item-list">
+      <div>【{listTitle}】</div>
       <Box className="item-list-box" id="item-list-box">
         <FixedSizeList
           height={boxHeight}

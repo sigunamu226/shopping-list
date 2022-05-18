@@ -1,22 +1,35 @@
 import { Container } from "@mui/material";
 import React, { useState } from "react";
 import { Row } from "react-bootstrap";
-import { Item } from "../interfaces/item";
+import { recentItem } from "../interfaces/recentItem";
+import { nextTimeItem } from "../interfaces/nextTimeItem";
 import Header from "./Header";
 import ItemInput from "./ItemInput";
 import ItemList from "./ItemList";
 
 const ItemBoard: React.FC = () => {
-  const [item, setItem] = useState<Item[]>([]);
+  const [recentItem, setRecentItem] = useState<recentItem[]>([]);
+  const [nextTimeItem, setNextTimeItem] = useState<nextTimeItem[]>([]);
 
   return (
     <>
       <Header />
-      <ItemInput item={item} setItem={setItem} />
+      <ItemInput
+        recentItemStates={{ recentItem, setRecentItem }}
+        nextItemStates={{ nextTimeItem, setNextTimeItem }}
+      />
       <Container className="mt-5" maxWidth="xl">
         <Row>
-          <ItemList item={item} setItem={setItem} />
-          <ItemList item={item} setItem={setItem} />
+          <ItemList
+            item={recentItem}
+            setItem={setRecentItem}
+            listTitle="直近で欲しい物リスト"
+          />
+          <ItemList
+            item={nextTimeItem}
+            setItem={setNextTimeItem}
+            listTitle="その内欲しい物リスト"
+          />
         </Row>
       </Container>
     </>

@@ -9,13 +9,25 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useState } from "react";
-import { Item } from "../interfaces/item";
+import { nextTimeItem } from "../interfaces/nextTimeItem";
+import { recentItem } from "../interfaces/recentItem";
 import "./iteminput.scss";
 
-const ItemInput: React.FC<{
-  item: Item[];
-  setItem: React.Dispatch<React.SetStateAction<Item[]>>;
-}> = ({ item, setItem }) => {
+type stateProps = {
+  recentItemStates: {
+    recentItem: recentItem[];
+    setRecentItem: React.Dispatch<React.SetStateAction<recentItem[]>>;
+  };
+  nextItemStates: {
+    nextTimeItem: recentItem[];
+    setNextTimeItem: React.Dispatch<React.SetStateAction<nextTimeItem[]>>;
+  };
+};
+
+const ItemInput: React.FC<stateProps> = ({
+  recentItemStates: { recentItem, setRecentItem },
+  nextItemStates: { nextTimeItem, setNextTimeItem },
+}) => {
   const [itemName, setItemName] = useState("");
   const [itemStatus, setItemStatus] = useState("");
   const [count, setCount] = useState(0);
@@ -29,12 +41,26 @@ const ItemInput: React.FC<{
   };
 
   const onAddItems = () => {
-    setItem([...item, { id: count, name: itemName, status: itemStatus }]);
+    if (itemStatus === "直近") {
+      setRecentItem([
+        ...recentItem,
+        { id: count, name: itemName, status: itemStatus },
+      ]);
+    } else {
+      setNextTimeItem([
+        ...nextTimeItem,
+        { id: count, name: itemName, status: itemStatus },
+      ]);
+    }
     setCount(count + 1);
   };
 
   const isItemInclude = (inputItem: string) => {
-    return item.some((i) => i.name === inputItem);
+    return (
+      (recentItem.some((ri) => ri.name === inputItem) ||
+        nextTimeItem.some((nti) => nti.name === inputItem)) &&
+      itemStatus !== ""
+    );
   };
 
   return (
