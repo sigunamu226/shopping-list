@@ -33,6 +33,10 @@ const ItemInput: React.FC<{
     setCount(count + 1);
   };
 
+  const isItemInclude = (inputItem: string) => {
+    return item.some((i) => i.name === inputItem);
+  };
+
   return (
     <Container className="mt-5">
       <div className="text-center">
@@ -57,7 +61,12 @@ const ItemInput: React.FC<{
             <MenuItem value="その内">その内</MenuItem>
           </Select>
         </FormControl>
-        <Button className="add-button" variant="contained" onClick={onAddItems}>
+        <Button
+          className="add-button"
+          variant="contained"
+          onClick={onAddItems}
+          disabled={itemName === "" || isItemInclude(itemName)}
+        >
           追加
         </Button>
       </div>
