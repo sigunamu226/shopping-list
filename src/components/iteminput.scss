@@ -1,11 +1,20 @@
-.input-item {
-  width: 60%;
-}
+.input-container {
+  .input-item {
+    width: 100%;
+  }
 
-.select-status {
-  margin: 0 0 0 1rem !important;
-}
+  .select-status {
+    width: 100%;
 
-.add-button {
-  margin: 0.5rem 0 0 1rem !important;
+    @media (min-width: 768px) {
+      width: 60%;
+      margin: 0 0 0 1rem !important;
+    }
+  }
+  .add-button {
+    padding: 1rem;
+    @media (min-width: 768px) {
+      padding: 1rem 3rem;
+    }
+  }
 }

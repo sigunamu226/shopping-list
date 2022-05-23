@@ -39,8 +39,8 @@ const ItemList: React.FC<{
   };
 
   return (
-    <Col className="item-list">
-      <div>【{listTitle}】</div>
+    <div className="col-12 col-md-6 item-list">
+      <div className="list-title">【{listTitle}】</div>
       <Box className="item-list-box" id="item-list-box">
         <FixedSizeList
           height={boxHeight}
@@ -52,7 +52,7 @@ const ItemList: React.FC<{
           {renderRow}
         </FixedSizeList>
       </Box>
-    </Col>
+    </div>
   );
 
   function renderRow(props: ListChildComponentProps) {
@@ -68,6 +68,7 @@ const ItemList: React.FC<{
             onClick={() => {
               onClickDelete(item[index]);
             }}
+            className="list-item-delete-icon"
           >
             <DeleteIcon />
           </IconButton>
@@ -81,8 +82,9 @@ const ItemList: React.FC<{
           onClick={() => {
             onCheck(index);
           }}
+          className="list-item-button"
         >
-          <ListItemIcon>
+          <ListItemIcon className="list-item-icon">
             <Checkbox
               edge="start"
               tabIndex={-1}
@@ -91,7 +93,11 @@ const ItemList: React.FC<{
               inputProps={{ "aria-labelledby": "aaa" }}
             />
           </ListItemIcon>
-          <ListItemText id="aaa" primary={item[index].name} />
+          <ListItemText
+            className="list-item-text"
+            id="aaa"
+            primary={item[index].name}
+          />
         </ListItemButton>
       </ListItem>
     );

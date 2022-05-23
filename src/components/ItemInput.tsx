@@ -9,6 +9,7 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import { nextTimeItem } from "../interfaces/nextTimeItem";
 import { recentItem } from "../interfaces/recentItem";
 import "./iteminput.scss";
@@ -64,38 +65,46 @@ const ItemInput: React.FC<stateProps> = ({
   };
 
   return (
-    <Container className="mt-5">
-      <div className="text-center">
-        <TextField
-          className="input-item"
-          label="買いたいもの"
-          type="text"
-          value={itemName}
-          onChange={onChangeName}
-        />
-        <FormControl className="select-status" sx={{ m: 1, minWidth: 80 }}>
-          <InputLabel id="demo-simple-select-autowidth-label">いつ</InputLabel>
-          <Select
-            labelId="demo-simple-select-autowidth-label"
-            id="demo-simple-select-autowidth"
-            value={itemStatus}
-            onChange={handleChange}
-            autoWidth
-            label="いつ"
+    <Container className="mt-5 input-container">
+      <Row className="text-center">
+        <Col className="col-5 col-md-8">
+          <TextField
+            className="input-item"
+            label="買いたいもの"
+            type="text"
+            value={itemName}
+            onChange={onChangeName}
+          />
+        </Col>
+        <Col className="col-4 col-md-2">
+          <FormControl className="select-status">
+            <InputLabel id="demo-simple-select-autowidth-label">
+              いつ
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              value={itemStatus}
+              onChange={handleChange}
+              autoWidth
+              label="いつ"
+            >
+              <MenuItem value="直近">直近</MenuItem>
+              <MenuItem value="その内">その内</MenuItem>
+            </Select>
+          </FormControl>
+        </Col>
+        <Col className="col-3 col-md-2">
+          <Button
+            className="add-button"
+            variant="contained"
+            onClick={onAddItems}
+            disabled={itemName === "" || isItemInclude(itemName)}
           >
-            <MenuItem value="直近">直近</MenuItem>
-            <MenuItem value="その内">その内</MenuItem>
-          </Select>
-        </FormControl>
-        <Button
-          className="add-button"
-          variant="contained"
-          onClick={onAddItems}
-          disabled={itemName === "" || isItemInclude(itemName)}
-        >
-          追加
-        </Button>
-      </div>
+            追加
+          </Button>
+        </Col>
+      </Row>
     </Container>
   );
 };

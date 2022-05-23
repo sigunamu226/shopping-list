@@ -1,0 +1,18 @@
+.item-list-container {
+  display: flex !important;
+
+  .item-list-wrapper {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+
+    @media (max-width: 767px) {
+      overflow-x: scroll;
+      width: 100%;
+    }
+
+    :last-child.item-list {
+      margin-left: 1rem;
+    }
+  }
+}
