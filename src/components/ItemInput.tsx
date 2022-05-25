@@ -58,9 +58,10 @@ const ItemInput: React.FC<stateProps> = ({
 
   const isItemInclude = (inputItem: string) => {
     return (
-      (recentItem.some((ri) => ri.name === inputItem) ||
-        nextTimeItem.some((nti) => nti.name === inputItem)) &&
-      itemStatus !== ""
+      inputItem === "" ||
+      itemStatus === "" ||
+      recentItem.some((ri) => ri.name === inputItem) ||
+      nextTimeItem.some((nti) => nti.name === inputItem)
     );
   };
 
@@ -99,7 +100,7 @@ const ItemInput: React.FC<stateProps> = ({
             className="add-button"
             variant="contained"
             onClick={onAddItems}
-            disabled={itemName === "" || isItemInclude(itemName)}
+            disabled={isItemInclude(itemName)}
           >
             追加
           </Button>

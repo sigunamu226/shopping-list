@@ -9,7 +9,6 @@ import {
   ListItemText,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Col } from "react-bootstrap";
 import { FixedSizeList, ListChildComponentProps } from "react-window";
 import { nextTimeItem } from "../interfaces/nextTimeItem";
 import { recentItem } from "../interfaces/recentItem";
