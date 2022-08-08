@@ -1,0 +1,20 @@
+.signup-container {
+  max-width: 540px !important;
+  .signup-paper {
+    margin-top: 5rem;
+    padding: 4rem;
+
+    .icon {
+      margin: 0 auto 1rem !important;
+      width: 6rem !important;
+      height: 6rem !important;
+    }
+    h3 {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .input-form {
+      margin-top: 2rem;
+    }
+  }
+}
