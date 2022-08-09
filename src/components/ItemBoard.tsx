@@ -6,10 +6,15 @@ import Header from "./Header";
 import ItemInput from "./ItemInput";
 import ItemList from "./ItemList";
 import "./itemboard.scss";
+import { useAuthContext } from "../context/AuthContext";
+import { Navigate } from "react-router-dom";
 
 const ItemBoard: React.FC = () => {
+  const { user } = useAuthContext();
   const [recentItem, setRecentItem] = useState<recentItem[]>([]);
   const [nextTimeItem, setNextTimeItem] = useState<nextTimeItem[]>([]);
+
+  if (!user) return <Navigate to="/login" />;
 
   return (
     <>
