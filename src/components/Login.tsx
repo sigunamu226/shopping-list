@@ -1,26 +1,18 @@
-import {
-  Avatar,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Paper,
-  Stack,
-  TextField,
-} from "@mui/material";
+import { Avatar, Button, Paper, Stack, TextField } from "@mui/material";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Container, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Image from "../asset/image/bandicam-2021-02-02-21-19-47-932.jpg";
+import { auth } from "../firebase.js";
+import { IError, ILogin, InputType } from "../interfaces/login";
 import {
   initError,
   initLogin,
   onCheckValidation,
   serviceOnChangeInput,
 } from "../services/login";
-import { auth } from "../firebase.js";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import "./signup.scss";
-import { IError, ILogin, InputType } from "../interfaces/login";
-import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -90,10 +82,6 @@ const Login: React.FC = () => {
               onChange={(e) => {
                 onChangeInput(InputType.PASS, e);
               }}
-            />
-            <FormControlLabel
-              control={<Checkbox />}
-              label="ログイン状態を保存する"
             />
           </Stack>
           <Button
