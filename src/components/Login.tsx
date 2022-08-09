@@ -20,8 +20,10 @@ import { auth } from "../firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import "./signup.scss";
 import { IError, ILogin, InputType } from "../interfaces/login";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
   const [loginState, setLoginState] = useState<ILogin>(initLogin());
   const [errorState, setErrorState] = useState<IError>(initError());
 
@@ -42,6 +44,8 @@ const Login: React.FC = () => {
       loginState.email,
       loginState.password
     );
+
+    navigate("/itemboard");
   };
 
   return (
