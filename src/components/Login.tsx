@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   const [loginState, setLoginState] = useState<ILogin>(initLogin());
   const [errorState, setErrorState] = useState<IError>(initError());
 
@@ -39,13 +40,17 @@ const Login: React.FC = () => {
       return false;
     }
 
-    await signInWithEmailAndPassword(
-      auth,
-      loginState.email,
-      loginState.password
-    );
+    try {
+      await signInWithEmailAndPassword(
+        auth,
+        loginState.email,
+        loginState.password
+      );
 
-    navigate("/itemboard");
+      navigate("/itemboard");
+    } catch (error: any) {
+      setError(error.message);
+    }
   };
 
   return (
@@ -53,6 +58,7 @@ const Login: React.FC = () => {
       <Paper className="signup-paper">
         <Avatar alt="icon" src={Image} className="icon" />
         <h3>ようこそ買い物メモへ</h3>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <Form className="input-form">
           <Stack spacing={3}>
             <TextField
