@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Paper,
-  Stack,
-  TextField,
-} from "@mui/material";
+import { Avatar, Button, Paper, Stack, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import Image from "../asset/image/bandicam-2021-02-02-21-19-47-932.jpg";
@@ -37,11 +29,11 @@ const SignUp: React.FC = () => {
       return false;
     }
 
-    // await createUserWithEmailAndPassword(
-    //   auth,
-    //   loginState.email,
-    //   loginState.password
-    // );
+    await createUserWithEmailAndPassword(
+      auth,
+      loginState.email,
+      loginState.password
+    );
   };
 
   return (
@@ -81,10 +73,6 @@ const SignUp: React.FC = () => {
                 onChangeInput(InputType.PASS, e);
               }}
             />
-            <FormControlLabel
-              control={<Checkbox />}
-              label="ログイン状態を保存する"
-            />
           </Stack>
           <Button
             className="mt-3"
@@ -92,7 +80,7 @@ const SignUp: React.FC = () => {
             fullWidth
             onClick={onClickLogin}
           >
-            ログイン
+            登録
           </Button>
           <Button className="mt-2" variant="text" fullWidth>
             パスワードを忘れた場合
