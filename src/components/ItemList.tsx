@@ -27,6 +27,7 @@ const ItemList: React.FC<{
     setChecked([...checked, false]);
     setBoxHeight(document.getElementById("item-list-box")!.clientHeight);
     setBoxWidth(document.getElementById("item-list-box")!.clientWidth);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);
 
   const onCheck = (key: number) => {
