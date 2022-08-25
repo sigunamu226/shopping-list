@@ -13,6 +13,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./signup.scss";
 import { IError, ILogin, InputType } from "../interfaces/login";
 import { useNavigate } from "react-router-dom";
+import { setDoc, doc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
@@ -38,6 +40,12 @@ const SignUp: React.FC = () => {
         loginState.email,
         loginState.password
       );
+
+      await setDoc(doc(db, "users", auth.currentUser!.uid), {
+        id: auth.currentUser!.uid,
+        recentItem: [],
+        nextTimeItem: [],
+      });
 
       navigate("/itemboard");
     } catch (error: any) {
