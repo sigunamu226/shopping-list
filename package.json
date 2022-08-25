@@ -10,12 +10,6 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
-    "@types/bootstrap": "^5.1.11",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.13",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@types/react-window": "^1.8.5",
     "bootstrap": "^5.1.3",
     "firebase": "^9.8.3",
     "react": "^18.1.0",
@@ -52,7 +46,13 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.51.0"
+    "sass": "^1.51.0",
+    "@types/bootstrap": "^5.1.11",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-window": "^1.8.5"
   },
   "resolutions": {
     "autoprefixer": "10.4.5"
