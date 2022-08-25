@@ -10,13 +10,13 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { FixedSizeList, ListChildComponentProps } from "react-window";
-import { nextTimeItem } from "../interfaces/nextTimeItem";
-import { recentItem } from "../interfaces/recentItem";
+import { Item, nextTimeItem, recentItem } from "../interfaces/item";
+import { onCheckUpdate, onClickDelete } from "../services/utill";
 import "./itemlist.scss";
 
 const ItemList: React.FC<{
-  item: recentItem[] | nextTimeItem[];
-  setItem: React.Dispatch<React.SetStateAction<recentItem[] | nextTimeItem[]>>;
+  item: Item;
+  setItem: React.Dispatch<React.SetStateAction<Item>>;
   listTitle: string;
 }> = ({ item, setItem, listTitle }) => {
   const [checked, setChecked] = useState<boolean[]>([]);
@@ -30,12 +30,12 @@ const ItemList: React.FC<{
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);
 
-  const onCheck = (key: number) => {
-    setChecked(checked.map((c, i) => (i === key ? !c : c)));
+  const onCheck = (key: number, listTitle: string) => {
+    onCheckUpdate(key, listTitle, item, setItem);
   };
 
-  const onClickDelete = (deleteItem: recentItem | nextTimeItem) => {
-    setItem(item.filter((i) => i !== deleteItem));
+  const onClick = (deleteItem: recentItem | nextTimeItem) => {
+    onClickDelete(deleteItem, listTitle, item, setItem);
   };
 
   return (
@@ -46,7 +46,11 @@ const ItemList: React.FC<{
           height={boxHeight}
           width={boxWidth}
           itemSize={46}
-          itemCount={item.length}
+          itemCount={
+            listTitle === "直近で欲しい物リスト"
+              ? item.recentItem.length
+              : item.nextTimeItem.length
+          }
           overscanCount={5}
         >
           {renderRow}
@@ -66,7 +70,11 @@ const ItemList: React.FC<{
             edge="end"
             aria-label="comments"
             onClick={() => {
-              onClickDelete(item[index]);
+              onClick(
+                listTitle === "直近で欲しい物リスト"
+                  ? item.recentItem[index]
+                  : item.nextTimeItem[index]
+              );
             }}
             className="list-item-delete-icon"
           >
@@ -80,7 +88,7 @@ const ItemList: React.FC<{
           role={undefined}
           dense
           onClick={() => {
-            onCheck(index);
+            onCheck(index, listTitle);
           }}
           className="list-item-button"
         >
@@ -89,14 +97,22 @@ const ItemList: React.FC<{
               edge="start"
               tabIndex={-1}
               disableRipple
-              checked={checked[index]}
+              checked={
+                listTitle === "直近で欲しい物リスト"
+                  ? item.recentItem[index].checked
+                  : item.nextTimeItem[index].checked
+              }
               inputProps={{ "aria-labelledby": "aaa" }}
             />
           </ListItemIcon>
           <ListItemText
             className="list-item-text"
             id="aaa"
-            primary={item[index].name}
+            primary={
+              listTitle === "直近で欲しい物リスト"
+                ? item.recentItem[index].name
+                : item.nextTimeItem[index].name
+            }
           />
         </ListItemButton>
       </ListItem>

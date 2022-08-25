@@ -10,25 +10,14 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { nextTimeItem } from "../interfaces/nextTimeItem";
-import { recentItem } from "../interfaces/recentItem";
+import { updateItem } from "../services/utill";
+import { Item } from "../interfaces/item";
 import "./iteminput.scss";
 
-type stateProps = {
-  recentItemStates: {
-    recentItem: recentItem[];
-    setRecentItem: React.Dispatch<React.SetStateAction<recentItem[]>>;
-  };
-  nextItemStates: {
-    nextTimeItem: recentItem[];
-    setNextTimeItem: React.Dispatch<React.SetStateAction<nextTimeItem[]>>;
-  };
-};
-
-const ItemInput: React.FC<stateProps> = ({
-  recentItemStates: { recentItem, setRecentItem },
-  nextItemStates: { nextTimeItem, setNextTimeItem },
-}) => {
+const ItemInput: React.FC<{
+  item: Item;
+  setItem: React.Dispatch<React.SetStateAction<Item>>;
+}> = ({ item, setItem }) => {
   const [itemName, setItemName] = useState("");
   const [itemStatus, setItemStatus] = useState("");
   const [count, setCount] = useState(0);
@@ -42,17 +31,7 @@ const ItemInput: React.FC<stateProps> = ({
   };
 
   const onAddItems = () => {
-    if (itemStatus === "直近") {
-      setRecentItem([
-        ...recentItem,
-        { id: count, name: itemName, status: itemStatus },
-      ]);
-    } else {
-      setNextTimeItem([
-        ...nextTimeItem,
-        { id: count, name: itemName, status: itemStatus },
-      ]);
-    }
+    updateItem(count, itemName, itemStatus, item, setItem);
     setCount(count + 1);
   };
 
@@ -60,8 +39,8 @@ const ItemInput: React.FC<stateProps> = ({
     return (
       inputItem === "" ||
       itemStatus === "" ||
-      recentItem.some((ri) => ri.name === inputItem) ||
-      nextTimeItem.some((nti) => nti.name === inputItem)
+      item.recentItem.some((ri) => ri.name === inputItem) ||
+      item.nextTimeItem.some((nti) => nti.name === inputItem)
     );
   };
 
