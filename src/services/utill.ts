@@ -1,7 +1,7 @@
 import { doc, updateDoc } from "firebase/firestore";
 import React from "react";
 import { auth, db } from "../firebase";
-import { Item, nextTimeItem, recentItem } from "../interfaces/item";
+import { Item, nextTimeItem, recentItem } from "../common/interfaces/item";
 
 export const updateItem = async (
   count: number,

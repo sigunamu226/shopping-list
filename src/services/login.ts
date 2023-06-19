@@ -1,4 +1,4 @@
-import { IError, ILogin, InputType } from "../interfaces/login";
+import { IError, ILogin, InputType } from "../common/interfaces/login";
 
 export const initLogin = () => {
   return { email: "", password: "" };

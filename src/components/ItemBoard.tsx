@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { auth, db } from "../firebase";
-import { Item } from "../interfaces/item";
+import { Item } from "../common/interfaces/item";
 import Header from "./Header";
 import "./itemboard.scss";
 import ItemInput from "./ItemInput";

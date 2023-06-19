@@ -11,7 +11,7 @@ import {
 import { auth } from "../firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./signup.scss";
-import { IError, ILogin, InputType } from "../interfaces/login";
+import { IError, ILogin, InputType } from "../common/interfaces/login";
 import { useNavigate } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";

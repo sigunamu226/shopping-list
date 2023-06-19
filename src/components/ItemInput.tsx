@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { updateItem } from "../services/utill";
-import { Item } from "../interfaces/item";
+import { Item } from "../common/interfaces/item";
 import "./iteminput.scss";
 
 const ItemInput: React.FC<{
