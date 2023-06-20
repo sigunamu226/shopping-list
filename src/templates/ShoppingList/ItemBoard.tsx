@@ -2,13 +2,13 @@ import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
-import { useAuthContext } from "../context/AuthContext";
-import { auth, db } from "../firebase";
-import { Item } from "../common/interfaces/item";
-import Header from "./Header";
+import { useAuthContext } from "../../context/AuthContext";
+import { auth, db } from "../../firebase";
+import { Item } from "../../common/interfaces/item";
+import Header from "../Header/Header";
 import "./itemboard.scss";
-import ItemInput from "./ItemInput";
-import ItemList from "./ItemList";
+import ItemList from "../../components/ItemList";
+import ItemInput from "../../components/ItemInput";
 
 const ItemBoard: React.FC = () => {
   const { user } = useAuthContext();

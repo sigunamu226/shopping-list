@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import ItemBoard from "./components/ItemBoard";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
+import ItemBoard from "./templates/ShoppingList/ItemBoard";
+import Login from "./templates/Auth/Login";
+import SignUp from "./templates/Auth/SignUp";
 import { AuthProvider } from "./context/AuthContext";
 
 const App: React.FC = () => {
