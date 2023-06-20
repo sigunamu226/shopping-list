@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import Image from "../asset/image/bandicam-2021-02-02-21-19-47-932.jpg";
+import Image from "../../asset/image/bandicam-2021-02-02-21-19-47-932.jpg";
 import { auth } from "../../firebase.js";
 import { IError, ILogin, InputType } from "../../common/interfaces/login";
 import {

@@ -1,20 +1,20 @@
 import { Avatar, Button, Paper, Stack, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { Container, Form } from "react-bootstrap";
-import Image from "../asset/image/bandicam-2021-02-02-21-19-47-932.jpg";
+import Image from "../../asset/image/bandicam-2021-02-02-21-19-47-932.jpg";
 import {
   initError,
   initLogin,
   onCheckValidation,
   serviceOnChangeInput,
-} from "../services/login";
-import { auth } from "../firebase.js";
+} from "../../services/login";
+import { auth } from "../../firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./signup.scss";
-import { IError, ILogin, InputType } from "../common/interfaces/login";
+import { IError, ILogin, InputType } from "../../common/interfaces/login";
 import { useNavigate } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
