@@ -1,20 +1,21 @@
 .input-container {
+  .input-row {
+    margin: 1rem auto;
+    width: 80%;
+  }
+
   .input-item {
     width: 100%;
   }
 
   .select-status {
     width: 100%;
-
-    @media (min-width: 768px) {
-      width: 60%;
-      margin: 0 0 0 1rem !important;
-    }
   }
-  .add-button {
-    padding: 1rem;
-    @media (min-width: 768px) {
-      padding: 1rem 3rem;
+
+  .add-button-wrapper {
+    text-align: center;
+    .add-button {
+      padding: 1rem 5rem;
     }
   }
 }

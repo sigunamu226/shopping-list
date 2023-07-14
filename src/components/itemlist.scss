@@ -1,28 +1,32 @@
-.item-list {
-  border: 1px solid;
-  height: 65vh;
+.item-list-box {
+  height: 59vh;
+  overflow-y: scroll;
 
-  @media (min-width: 768px) {
-    height: 70vh;
-  }
-
-  .list-title {
-    @media (max-width: 767px) {
-      font-size: 12px;
-    }
-  }
-
-  .item-list-box {
-    height: 62vh;
-
-    @media (min-width: 768px) {
-      width: 100%;
-      height: 65vh;
-      margin: 1rem auto;
-    }
+  .list {
+    padding: 0 !important;
 
     .list-item {
       padding-left: 0 !important;
+      background-color: #f5f5f5;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin: 0.5rem 0;
+
+      .list-item-button {
+        padding-right: 0;
+
+        .list-item-text {
+          overflow-wrap: break-word;
+        }
+      }
+
+      &:hover {
+        background-color: none;
+      }
     }
+  }
+
+  @media (max-width: 768px) {
+    height: 55vh;
   }
 }
