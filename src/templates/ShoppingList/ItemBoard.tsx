@@ -7,12 +7,14 @@ import { auth, db } from "../../firebase";
 import { Item, ItemDocument } from "../../common/interfaces/item";
 import Header from "../Header/Header";
 import "./itemboard.scss";
-import ItemList from "../../components/ItemList";
-import ItemInput from "../../components/ItemInput";
+import ItemList from "../../components/ItemList/ItemList";
+import ItemInput from "../../components/ItemInput/ItemInput";
+import { ItemFilter } from "../../components/ItemFilter/ItemFilter";
 
 const ItemBoard: React.FC = () => {
   const { user } = useAuthContext();
   const [item, setItem] = useState<Item[]>([]);
+  const [filter, setFilter] = useState<String>("全て");
 
   useEffect(() => {
     (async () => {
@@ -30,7 +32,8 @@ const ItemBoard: React.FC = () => {
       <Header />
       <ItemInput item={item} setItem={setItem} />
       <Container className="item-list-container">
-        <ItemList item={item} setItem={setItem} />
+        <ItemFilter filter={filter} setFilter={setFilter} />
+        <ItemList item={item} setItem={setItem} filter={filter} />
       </Container>
     </>
   );

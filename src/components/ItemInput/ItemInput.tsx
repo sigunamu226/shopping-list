@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { updateItem } from "../services/iteminput";
-import { Item } from "../common/interfaces/item";
+import { updateItem } from "../../services/iteminput";
+import { Item } from "../../common/interfaces/item";
 import "./iteminput.scss";
 
 interface ItemInputProps {
